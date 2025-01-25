@@ -20,18 +20,21 @@ class JWT:
     def __init__(self):
         load_dotenv()
         self.secret_key = os.getenv('secret_key')
+        self.refresh_secret_key = os.getenv('refresh_secret_key')
         self.algorithm = os.getenv('algorithm')
-        self.access_token_expire_minutes = os.getenv('access_token_expire_minutes')
+        self.access_token_expire_minutes = 30
+        self.refresh_token_expire_minutes = 60*24*7
     
-    def JWTEncoder(self, data:dict):
+    def create_access_token(self, data:dict):
         to_encode = data.copy()
         expire = datetime.utcnow() + timedelta(minutes=self.access_token_expire_minutes)
         to_encode.update({'exp':expire})
         encode_jwt = jwt.encode(to_encode, self.secret_key, algorithm=self.algorithm)
         return encode_jwt
     
-    def JWTDecoder(self, token:str):
-        try:
-            return jwt.decode(token, self.secret_key, algorithms=[self.algorithm])
-        except JWTError:
-            return None
+    def create_refresh_token(self, data:dict):
+        to_encode = data.copy()
+        expire = datetime.utcnow() + timedelta(minutes=self.access_token_expire_minutes)
+        to_encode.update({'exp':expire})
+        encode_jwt = jwt.encode(to_encode, self.refresh_secret_key, algorithm=self.algorithm)
+        return encode_jwt

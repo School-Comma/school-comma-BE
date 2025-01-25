@@ -14,5 +14,5 @@ class UserRepository:
         self.session.refresh(user)
         return user
 
-    def find_by_email(slef, email : str)-> User | None:
-        return slef.session.scalar(select(User).where(User.email == email))
+    def find_by_email(self, email : str)-> User | None:
+        return self.session.scalar(select(User).where(User.email == email))
