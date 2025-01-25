@@ -19,9 +19,9 @@ class Crypto:
 class JWT:
     def __init__(self):
         load_dotenv()
-        self.secret_key = database_url = os.getenv('secret_key')
-        self.algorithm = 'HS256'
-        self.access_token_expire_minutes = 30
+        self.secret_key = os.getenv('secret_key')
+        self.algorithm = os.getenv('algorithm')
+        self.access_token_expire_minutes = os.getenv('access_token_expire_minutes')
     
     def JWTEncoder(self, data:dict):
         to_encode = data.copy()
