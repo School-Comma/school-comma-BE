@@ -11,3 +11,11 @@ class PostService:
         self.post_repo.save(post=post)
         return post
     
+    def list_get_post(self):
+        return self.post_repo.find_all()
+    
+    def get_post(self, post_id:int):
+        post = self.post_repo.find_by_id(post_id=post_id)
+        if post is None:
+            raise HTTPException(status_code=404, detail='찾으시는 게시물은 존재하지 않습니다.')
+        return post
