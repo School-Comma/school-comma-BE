@@ -32,3 +32,14 @@ def get_post(post_id : int, post_service : PostService = Depends(), current_user
         'author' : current_user.username,
         'author_id' : current_user.id
     }
+    
+@router.patch('/post/{post_id}')
+def update_post(post_id : int,request : PostCreate, post_service : PostService = Depends(), current_user : get_current_user = Depends()):
+    post = post_service.update_post(post_id=post_id, author_id=current_user.id, title=request.title, content=request.title)
+    return {
+        'id' : post.id,
+        'title' : post.title,
+        'content' : post.content,
+        'author' : current_user.username,
+        'author_id' : current_user.id
+    }
