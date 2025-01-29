@@ -1,6 +1,6 @@
 from fastapi import Depends
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from sqlalchemy import select, delete
 from database.connection import get_db
 from database.models import Post
 
@@ -19,3 +19,7 @@ class PostRepository:
     
     def find_by_id(self, post_id:int) -> Post|None:
         return self.session.scalar(select(Post).where(Post.id == post_id))
+    
+    def delete_post(self, post: Post):
+        self.session.delete(post)
+        self.session.commit()

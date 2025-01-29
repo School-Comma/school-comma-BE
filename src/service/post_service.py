@@ -28,3 +28,9 @@ class PostService:
         post.content = content
         self.post_repo.save(post=post)
         return post
+    
+    def delete_post(self, post_id, author_id:int):
+        post = self.get_post(post_id=post_id)
+        if post.author_id != author_id:
+            raise HTTPException(status_code=403, detail='삭제할 권한이 없습니다.')
+        self.post_repo.delete_post(post=post)

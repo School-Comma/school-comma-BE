@@ -43,3 +43,9 @@ def update_post(post_id : int,request : PostCreate, post_service : PostService =
         'author' : current_user.username,
         'author_id' : current_user.id
     }
+
+@router.delete('/post/{post_id}')
+def delete_post(post_id : int, post_service : PostService = Depends(), current_user : get_current_user = Depends()):
+    post = post_service.delete_post(post_id=post_id, author_id=current_user.id)
+    return {'삭제가 되었습니다.'}
+    
