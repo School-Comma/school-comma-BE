@@ -7,10 +7,7 @@ from utils.auth import Crypto, JWT
 import os
 from dotenv import load_dotenv
 
-# reuseable_oauth = OAuth2PasswordBearer(
-#     tokenUrl='/login',
-#     scheme_name='JWT'
-# )
+
 load_dotenv()
 
 class UserService:
@@ -42,7 +39,6 @@ class UserService:
             "access_token": access_token,
             "refresh_token": refresh_token 
         }
-        
         
         
 def get_current_user(token: str, user_repo : UserRepository = Depends()):
