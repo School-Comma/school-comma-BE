@@ -3,9 +3,10 @@ uvicorn
 sqlalchemy
 python-dotenv
 pymysql
-os
 typing
-jose
+python-jose
 pydantic
 passlib
 datetime
+pydantic[email]
+cryptography

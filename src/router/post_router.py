@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter, Depends
-from router.schema.post_schema import PostCreate, PostResponse
-from service.post_service import PostService
-from service.user_service import get_current_user
+from src.router.schema.post_schema import PostCreate, PostResponse
+from src.service.post_service import PostService
+from src.service.user_service import get_current_user
 
 router = APIRouter()
 
@@ -35,7 +35,7 @@ def get_post(post_id : int, post_service : PostService = Depends(), current_user
     
 @router.patch('/post/{post_id}')
 def update_post(post_id : int,request : PostCreate, post_service : PostService = Depends(), current_user : get_current_user = Depends()):
-    post = post_service.update_post(post_id=post_id, author_id=current_user.id, title=request.title, content=request.title)
+    post = post_service.update_post(post_id=post_id, author_id=current_user.id, title=request.title, content=request.content)
     return {
         'id' : post.id,
         'title' : post.title,

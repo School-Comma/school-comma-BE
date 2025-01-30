@@ -1,8 +1,8 @@
 from fastapi import Depends
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from database.connection import get_db
-from database.models import User
+from src.database.connection import get_db
+from src.database.models import User
 
 class UserRepository:
     def __init__(self, session : Session = Depends(get_db)):

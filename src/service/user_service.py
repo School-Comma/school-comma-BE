@@ -1,9 +1,9 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError, ExpiredSignatureError
-from repository.user_repository import UserRepository
-from database.models import User
-from utils.auth import Crypto, JWT
+from src.repository.user_repository import UserRepository
+from src.database.models import User
+from src.utils.auth import Crypto, JWT
 import os
 from dotenv import load_dotenv
 

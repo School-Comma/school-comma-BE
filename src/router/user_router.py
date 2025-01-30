@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Depends
-from fastapi.security import OAuth2PasswordRequestForm
-from service.user_service import UserService, get_current_user
-from router.schema.user_schema import CreateUser, LoginUser
-from database.models import User
+from src.service.user_service import UserService, get_current_user
+from src.router.schema.user_schema import CreateUser, LoginUser
 
 router = APIRouter()
 

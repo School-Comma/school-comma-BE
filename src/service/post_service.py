@@ -1,6 +1,6 @@
 from fastapi import Depends, HTTPException
-from repository.post_repository import PostRepository
-from database.models import Post
+from src.repository.post_repository import PostRepository
+from src.database.models import Post
 
 class PostService:
     def __init__(self, post_repo : PostRepository = Depends()):

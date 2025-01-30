@@ -1,8 +1,8 @@
 from fastapi import Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import select, delete
-from database.connection import get_db
-from database.models import Post
+from src.database.connection import get_db
+from src.database.models import Post
 
 class PostRepository:
     def __init__(self, session : Session = Depends(get_db)):
